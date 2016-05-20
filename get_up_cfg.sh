@@ -2,13 +2,13 @@
 
 #CFG_PATH=.
 #CFG_FILE=$CFG_PATH/test.cfg
+
 echo "CFG_PATH"
 echo "CFG_FILE"
 if test -e $CFG_FILE
-then
-echo "file exist"
+echo "dev_check file exist"
 else
-echo "file not exist"
+echo "dev_check file not exist"
 touch $CFG_FILE
 #NETDEV_COUNT=$(ifconfig -a | grep -i hwaddr|grep -a "Link"|wc -l)
 i=0
