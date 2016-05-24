@@ -6,7 +6,7 @@ DEL_BR=./del_br.sh
 vconfig add $DEV_OUT $MANAGER_VLAN
 
 ip netns add MNG-namespace
-ip link set em1.$MANAGER_VLAN netns MNG-namespace
+ip link set $DEV_OUT.$MANAGER_VLAN netns MNG-namespace
 ip netns exec MNG-namespace ifconfig $DEV_OUT.$MANAGER_VLAN 0 up
 ip netns exec MNG-namespace dhclient $DEV_OUT.$MANAGER_VLAN
 #echo "ovsdb-tool create $WORK_PATH/etc/openvswitch/conf.db $WORK_PATH/share/openvswitch/vswitch.ovsschema"
