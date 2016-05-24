@@ -2,7 +2,7 @@
 
 DEL_BR=./del_br.sh
 
-#vconfig add em1 $BUSINESS_VLAN
+vconfig add $DEV_OUT $BUSINESS_VLAN
 vconfig add $DEV_OUT $MANAGER_VLAN
 
 ip netns add MNG-namespace
@@ -48,8 +48,10 @@ ip netns exec MNG-namespace ip link set SDN-internal netns NM-internal
 #ip link add SDN-internal type veth peer name NM-internal
 #ip netns exec MNG-namespace  ovs-vsctl add-port SDN-bridge SDN-internal set interface SDN-internal ofport_request=100
 #ip link set NM-internal netns NM-internal
-#ip link add SDN-out-default type veth peer name MNG-default-out.41
-#ovs-vsctl add-port SDN-bridge SDN-out-default set interface SDN-out-default ofport_request=200
+ip netns exec MNG-namespace ovs-vsctl add-port SDN-bridge SDN-out-default set interface SDN-out-default type=internal ofport_request=200
+ip netns exec MNG-namespace ip link set SDN-out-default netns 1
+ifconfig SDN-out-default 192.168.1.1/24 up
+
 
 ip netns exec NM-internal ifconfig SDN-internal 192.168.1.254/24 up
 ip netns exec NM-internal /etc/init.d/isc-dhcp-server start
