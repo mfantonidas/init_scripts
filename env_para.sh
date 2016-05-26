@@ -6,6 +6,8 @@ CHGDEV_FILE=$CFG_PATH/init_interface.sh
 export CFG_PATH
 export CFG_FILE
 CHG_DEV="1"
+BR="SDN-bridge"
+export BR
 export CHG_DEV
 WORK_PATH=/usr/local
 export WORK_PATH
@@ -26,7 +28,10 @@ MANAGER_IP=192.168.200.106
 export BUSINESS_VLAN
 export MANAGER_VLAN
 export MANAGER_IP
-
+DEFAULT_WAN_PATH=/etc/ppp
+WAN_PATH=/var/run/wan
+export WAN_PATH
+export DEFAULT_WAN_PATH
 DEV_OUT=
 DEV_SDN_ETH1=
 DEV_SDN_ETH2=

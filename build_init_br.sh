@@ -17,10 +17,10 @@ fi
 #echo "ovsdb-server --remote=punix:$WORK_PATH/var/run/openvswitch/db.sock --remote=db:Open_vSwitch,Open_vSwitch,manager_options --private-key=db:Open_vSwitch,SSL,private_key --certificate=db:Open_vSwitch,SSL,certificate --bootstrap-ca-cert=db:Open_vSwitch,SSL,ca_cert --pidfile --detach &"
 `ip netns exec MNG-namespace ovsdb-server --remote=punix:$WORK_PATH/var/run/openvswitch/db.sock --remote=db:Open_vSwitch,Open_vSwitch,manager_options --private-key=db:Open_vSwitch,SSL,private_key --certificate=db:Open_vSwitch,SSL,certificate --bootstrap-ca-cert=db:Open_vSwitch,SSL,ca_cert --pidfile --detach &`
 
-`ip netns exec MNG-namespace ovs-vsctl --no-wait init &`
-#echo  "ovs-vsctl --no-wait init &"
 `ip netns exec MNG-namespace ovs-vswitchd --pidfile --detach --log-file=$WORK_PATH/etc/openvswitch/vswitchd.log`
 #echo "ovs-vswitchd --pidfile --detach --log-file=$WORK_PATH/etc/openvswitch/vswitchd.log"
+`ip netns exec MNG-namespace ovs-vsctl --no-wait init &`
+#echo  "ovs-vsctl --no-wait init &"
 #$DEL_BR
 
 `ip netns exec MNG-namespace ovs-vsctl add-br SDN-bridge`
